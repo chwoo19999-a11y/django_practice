@@ -1,0 +1,23 @@
+<!-- polls/templates/polls/home.html -->
+{% extends 'polls/base.html' %}
+
+{% block title %}홈 - Django Blog{% endblock %}
+
+{% block content %}
+    <h1>환영합니다!</h1>
+    <p>Django Template 상속을 사용한 홈페이지입니다.</p>
+
+    <div style="margin-top: 2rem;">
+        <h2>최근 글</h2>
+        <ul>
+            {% for article in recent_articles %}
+                <li>
+                    <a href="#">{{ article.title }}</a>
+                    <small>({{ article.created_at|date:"m/d" }})</small>
+                </li>
+            {% empty %}
+                <li>아직 글이 없습니다.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
