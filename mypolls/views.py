@@ -1,4 +1,3 @@
-# polls/views.py
 # polls/views.py에 간단한 뷰 작성
 from django.http import HttpResponse
 
@@ -14,13 +13,10 @@ def index(request):
         "title":"장고 학습",
         "memos":memos
     }
-    return render(request=request,template_name="polls/index.html",
-     context=context)
+    return render(request=request, template_name="mypolls/index.html", context=context)
 
-
-def lion(request,name):
+def lion(request, name):
     return HttpResponse(f"""{name}가 장고를 배웁니다!!""")
-
 
 def dubug_request(request):
     # request 의 메서드와
@@ -33,26 +29,17 @@ def dubug_request(request):
     """
     return HttpResponse(content)
 
-
-def memo_list(self):
+def memo_list(request):  # ✅ self -> request로 수정
     # 메모 전체 가져오기
-    all_memo=Memo.objects.all()
+    all_memo = Memo.objects.all()
     # content 구성하기
-    content=""
+    content = ""
     for memo in all_memo:
-        content += "제목 : "+memo.title+"<br>"
-        content += "내용 : "+memo.content+"<br>"
-        content += "----"*10
+        content += "제목 : " + memo.title + "<br>"
+        content += "내용 : " + memo.content + "<br>"
+        content += "----" * 10
         content += "<br>"
     return HttpResponse(content)
-
-# content = "제목 : 타이틀
-# 내용 : 콘텐트
-# 제목 : 타이틀
-# 내용 : 콘텐트
-# 제목 : 타이틀
-# 내용 : 콘텐트
-# " 줄바꿈 -> <br>
 
 def one_memo(request, memo_id):
     memo = Memo.objects.get(id=memo_id)
