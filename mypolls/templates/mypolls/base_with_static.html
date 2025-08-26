@@ -1,0 +1,51 @@
+<!-- polls/templates/polls/base_with_static.html -->
+{% load static %}  <!-- static 태그 로드 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Blog{% endblock %}</title>
+
+    <!-- Static CSS 파일 -->
+    <link rel="stylesheet" href="{% static 'polls/css/style.css' %}">
+
+    <!-- 추가 CSS를 위한 블록 -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'polls/images/logo.png' %}" alt="Logo" style="height: 30px;">
+                    Django Blog
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="{% url 'home' %}">홈</a>
+                <a href="{% url 'blog_list' %}">블로그</a>
+                <a href="{% url 'memo_list' %}">메모</a>
+                <a href="/admin/">관리자</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 메인 컨테이너 -->
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <p>&copy; 2024 Django Blog. All rights reserved.</p>
+    </footer>
+
+    <!-- Static JavaScript 파일 -->
+    <script src="{% static 'polls/js/script.js' %}"></script>
+
+    <!-- 추가 스크립트를 위한 블록 -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

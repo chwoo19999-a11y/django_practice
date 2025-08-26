@@ -1,0 +1,18 @@
+<!-- polls/templates/polls/article_list_with_include.html -->
+{% extends 'polls/base_with_static.html' %}
+
+{% block title %}글 목록{% endblock %}
+
+{% block content %}
+    <h1>📚 글 목록</h1>
+
+    <!-- 글 카드를 include로 반복 -->
+    {% for article in articles %}
+        {% include 'polls/includes/article_card.html' %}
+    {% endfor %}
+
+    <!-- 페이지네이션 include -->
+    {% if page_obj %}
+        {% include 'polls/includes/pagination.html' %}
+    {% endif %}
+{% endblock %}
